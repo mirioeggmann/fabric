@@ -8,10 +8,16 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      - name: Set up Docker Buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
-      - name: Login to DockerHub
-        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Run Buildx
+      - name: Setup buildx
+        uses: docker/setup-buildx-action@v1
+        id: buildx
+        with:
+          install: true
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Run docker build (with buildx)
         run: |
-          docker buildx build -f images/tools/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:latest --push . 
+          docker build -f images/tools/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:latest  --push . 
