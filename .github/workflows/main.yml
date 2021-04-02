@@ -1,9 +1,5 @@
-name: build and push cloudflare-ddns image
-
-on:
-  push:
-    tags:
-    - '*'
+name: build and push multi arch images
+on: push
 
 jobs:
   buildx:
