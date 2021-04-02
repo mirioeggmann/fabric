@@ -14,4 +14,4 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Run Buildx
         run: |
-          docker buildx build -f images/tools/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64,linux/arm/v7 -t mirioeggmann/fabric-tools:latest --push . 
+          docker buildx build -f images/tools/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:latest --push . 
