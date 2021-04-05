@@ -1,5 +1,5 @@
 name: build and push multi arch images
-on: push
+on: workflow_dispatch
 
 jobs:
   buildx:
@@ -8,6 +8,8 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: 'v2.2.1'
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Setup buildx
@@ -22,16 +24,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build tools docker image (with buildx)
         run: |
-          docker build -f images/tools/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:latest  --push . 
+          docker build -f images/tools/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.12 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:latest  --push . 
       - name: Build baseos docker image (with buildx)
         run: |
-          docker build -f images/baseos/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-baseos:latest  --push . 
+          docker build -f images/baseos/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.12 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-baseos:latest  --push . 
       - name: Build ccenv docker image (with buildx)
         run: |
-          docker build -f images/ccenv/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-ccenv:latest  --push . 
+          docker build -f images/ccenv/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.12 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-ccenv:latest  --push . 
       - name: Build orderer docker image (with buildx)
         run: |
-          docker build -f images/orderer/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-orderer:latest  --push . 
+          docker build -f images/orderer/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.12 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-orderer:latest  --push . 
       - name: Build peer docker image (with buildx)
         run: |
-          docker build -f images/peer/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-peer:latest  --push . 
+          docker build -f images/peer/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.12 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-peer:latest  --push . 
