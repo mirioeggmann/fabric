@@ -9,7 +9,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: 'main'
+          ref: 'release-2.2'
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Setup buildx
