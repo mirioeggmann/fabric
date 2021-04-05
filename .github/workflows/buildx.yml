@@ -24,16 +24,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build tools docker image (with buildx)
         run: |
-          docker build -f images/tools/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:2.2.1  --push . 
+          docker build -f images/tools/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-tools:2.2.1  --push . 
       - name: Build baseos docker image (with buildx)
         run: |
-          docker build -f images/baseos/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.13 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-baseos:2.2.1  --push . 
+          docker build -f images/baseos/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-baseos:2.2.1  --push . 
       - name: Build ccenv docker image (with buildx)
         run: |
-          docker build -f images/ccenv/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.13 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-ccenv:2.2.1  --push . 
+          docker build -f images/ccenv/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-ccenv:2.2.1  --push . 
       - name: Build orderer docker image (with buildx)
         run: |
-          docker build -f images/orderer/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-orderer:2.2.1  --push . 
+          docker build -f images/orderer/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-orderer:2.2.1  --push . 
       - name: Build peer docker image (with buildx)
         run: |
-          docker build -f images/peer/Dockerfile --build-arg GO_VER=1.14.4 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-peer:2.2.1  --push . 
+          docker build -f images/peer/Dockerfile --build-arg GO_VER=1.15.7 --build-arg ALPINE_VER=3.13 --build-arg GO_TAGS= --platform linux/amd64,linux/arm64 -t mirioeggmann/fabric-peer:2.2.1  --push . 
